@@ -1,39 +1,133 @@
 @use '../utilities/variables' as *;
 @use '../utilities/mixins' as *;
 
-header {
-    background-color: $color-claro;
-    padding: $espaciado-medio;
-    border-radius: $radio-borde;
+.hero-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
 
-    .navbar {
-        width: 100%;
-        background-color: $color-claro;
+    width: 100%;
+    z-index: 1000;
+
+    padding: $espaciado-chico;
+
+    background-color: transparent;
+
+
+    .container-fluid {
+        padding: 0;
     }
 
-    .header_logo {
-        font-size: 42px;
-        font-weight: 700;
-        color: $color-texto;
-    }
-
-    .nav-link {
-        font-size: 16px;
-        color: $color-texto-secundario;
-        text-decoration: none;
-
-        @include estado-interactivo($color-acento);
-    }
-
-    .navbar-brand {
-        color: $color-texto;
-
-        &:hover {
-            color: $color-acento;
-        }
-    }
 
     .navbar-toggler {
+        margin-left: auto;
+
+        background-color: rgba(255, 255, 255, 0.88);
+
         border: 1px solid $color-texto;
+        border-radius: $radio-borde;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
+
+/* MOBILE Y TABLET */
+
+@media (max-width: 991px) {
+
+    .hero-navbar {
+
+        .navbar-collapse {
+            position: absolute;
+
+            top: 60px;
+            right: $espaciado-chico;
+
+            width: 230px;
+
+            padding: $espaciado-medio;
+
+            background-color: rgba(255, 255, 255, 0.95);
+
+            border-radius: $radio-borde;
+
+            z-index: 1001;
+        }
+
+
+        .navbar-nav {
+            text-align: right;
+        }
+
+
+        .nav-link {
+            padding: 8px 0;
+
+            color: $color-texto;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+}
+
+
+/* DESKTOP */
+
+@media (min-width: 992px) {
+
+    .hero-navbar {
+        padding: $espaciado-medio $espaciado-grande;
+
+
+        .navbar-collapse {
+            position: static;
+
+            width: auto;
+
+            padding: 0;
+
+            background-color: transparent;
+
+            border-radius: 0;
+        }
+
+
+        .navbar-nav {
+            padding: 8px 16px;
+
+            gap: $espaciado-chico;
+
+            background-color: rgba(255, 255, 255, 0.92);
+
+            border-radius: $radio-borde;
+        }
+
+
+        .nav-link {
+            color: $color-texto;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            padding: 6px 8px;
+
+            transition:
+                color 0.3s ease,
+                opacity 0.3s ease;
+
+            &:hover {
+                opacity: 0.65;
+            }
+        }
     }
 }

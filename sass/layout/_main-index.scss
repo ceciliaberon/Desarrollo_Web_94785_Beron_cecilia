@@ -1,5 +1,6 @@
 @use '../utilities/variables' as *;
 @use '../utilities/mixins' as *;
+
 main {
     width: 100%;
 }
@@ -30,25 +31,190 @@ p {
     color: $color-texto;
 }
 
+/* HERO */
+
+.hero-le-contes {
+    position: relative;
+    width: 100%;
+    margin: 0 0 $espaciado-medio;
+    padding: 0;
+    border-radius: $radio-borde;
+    overflow: hidden;
+
+    .hero-picture {
+        display: block;
+        width: 100%;
+    }
+
+    .hero-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: $radio-borde;
+    }
+
+    .hero-menu-overlay {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+    }
+
+    .hero-menu-toggle {
+        width: 52px;
+        height: 52px;
+        border: 1px solid rgba(60, 40, 30, 0.5);
+        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 0.88);
+        color: $color-texto;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.96);
+        }
+    }
+
+    .hero-menu-box {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 190px;
+        padding: 18px;
+        border-radius: 16px;
+        background-color: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+        a {
+            text-decoration: none;
+            color: $color-texto;
+            font-weight: 600;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: $color-fondo;
+            }
+        }
+    }
+}
+
+/* PRODUCTOS DESTACADOS */
+
+.productos-destacados {
+    text-align: center;
+    padding-top: $espaciado-grande;
+
+    h2 {
+        margin-bottom: $espaciado-medio;
+    }
+
+    .producto-destacado {
+        img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: $radio-borde;
+        }
+
+        h3 {
+            margin-top: $espaciado-chico;
+            margin-bottom: $espaciado-chico;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/* OPINIONES */
+
 .opiniones {
     display: grid;
     grid-template-areas:
         "titulo"
         "contenido";
     gap: $espaciado-medio;
-    background-color: $color-claro;
-    padding: $espaciado-medio;
+    background-color: $color-blanco;
+    padding: $espaciado-grande;
     border-radius: $radio-borde;
+    text-align: center;
 
     h2 {
         grid-area: titulo;
     }
 
     .opinion_contenedor {
+        grid-area: contenido;
         @include flex-column($espaciado-medio);
     }
 
-    @media (min-width: 1024px) {
+    .opinion-card {
+        background-color: $color-blanco;
+        border: 1px solid $color-claro;
+        border-radius: $radio-borde;
+        padding: $espaciado-medio;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+    }
+}
+
+/* BOTON */
+
+.btn-le-contes {
+    align-self: center;
+    background-color: $color-fondo;
+    color: $color-texto;
+    border: none;
+    border-radius: $radio-borde;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: $color-texto;
+        color: $color-blanco;
+        transform: translateY(-2px);
+    }
+}
+
+/* TABLET */
+
+@media (min-width: 768px) {
+    .productos-destacados {
+        .producto-destacado img {
+            max-height: 190px;
+        }
+    }
+}
+
+/* DESKTOP */
+
+@media (min-width: 1024px) {
+    .hero-le-contes {
+        .hero-menu-overlay {
+            top: 20px;
+            right: 20px;
+        }
+
+        .hero-menu-box {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+    }
+
+    .opiniones {
         .opinion_contenedor {
             flex-direction: row;
         }
